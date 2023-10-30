@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="knockoutjs" Version="3.5.1" />
     <PackageReference Include="Microsoft.Dynamics.Commerce.Sdk.Pos" Version="$(CommerceSdkPackagesVersion)" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.0.*" />
   </ItemGroup>
@@ -13,4 +14,25 @@
   <ItemGroup>
     <ProjectReference Include="..\CommerceRuntime\CommerceRuntime.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="knockoutDependency\" />
+    <Folder Include="Trigger\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Libraries\knockout.js" />
+  </ItemGroup>
+
+  <Target Name="ContentIncludeKnockoutLibrary" BeforeTargets="AssignTargetPaths" DependsOnTargets="RunResolvePackageDependencies">
+    <PropertyGroup>
+      <KnockoutjsFile>Libraries/knockout.js</KnockoutjsFile>
+      <KnockoutLibraryFilePath Condition="'%(PackageDefinitions.Name)' == 'knockoutjs'">%(PackageDefinitions.ResolvedPath)\Content\Scripts\knockout-%(PackageDefinitions.Version).js</KnockoutLibraryFilePath>
+    </PropertyGroup>
+    <Copy SourceFiles="$(KnockoutLibraryFilePath)" DestinationFiles="$(KnockoutjsFile)" SkipUnchangedFiles="true" />
+    <!-- Necessary for CPOS -->
+    <ItemGroup>
+      <Content Include="$(KnockoutjsFile)"></Content>
+    </ItemGroup>
+  </Target>
 </Project>

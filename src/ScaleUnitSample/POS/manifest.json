@@ -1,10 +1,17 @@
 ﻿{
   "$schema": "./devDependencies/schemas/manifestSchema.json",
-  "name": "Contoso.Pos.FullSystemExample.Sample",
+  "name": "Contoso.Commerce",
   "publisher": "Contoso",
   "version": "1.0.0",
   "minimumPosVersion": "9.29.0.0",
   "description": "An extension package that makes use of a Retail Server extension. Also works off-line.",
+  "dependencies": [
+    {
+      "alias": "knockout",
+      "format": "amd",
+      "modulePath": "Libraries/knockout"
+    }
+  ],
   "components": {
     "resources": {
       "supportedUICultures": [ "en-US" ],
@@ -19,7 +26,13 @@
             { "modulePath": "ViewExtensions/Search/NavigateToExampleViewCommand" }
           ]
         }
-      }
+      },
+      "triggers": [
+        {
+          "triggerType": "ApplicationStart",
+          "modulePath": "Trigger/ApplicationStartTrigger"
+        }
+      ]
     },
     "create": {
       "templatedDialogs": [
@@ -34,6 +47,10 @@
         {
           "htmlPath": "Controls/Dialogs/Display/PingResultDialog.html",
           "modulePath": "Controls/Dialogs/Display/PingResultDialogModule"
+        },
+        {
+          "htmlPath": "StoreHoursSample/Controls/Dialogs/StoreHoursDialog.html",
+          "modulePath": "StoreHoursSample/Controls/Dialogs/StoreHoursDialogModule"
         }
       ],
       "views": [
@@ -43,6 +60,20 @@
           "phonePageName": "ExampleView",
           "viewDirectory": "Views/",
           "viewControllerPath": "Views/ExampleView"
+        },
+        {
+          "title": "Store Hours View",
+          "pageName": "StoreHoursView",
+          "phonePageName": "StoreHoursView",
+          "viewDirectory": "StoreHoursSample/Views/",
+          "viewControllerPath": "StoreHoursSample/Views/StoreHoursView"
+        }
+      ],
+      "operations": [
+        {
+          "operationId": "10001",
+          "operationRequestFactoryPath": "StoreHoursSample/Operations/StoreHours/StoreHoursOperationRequestFactory",
+          "operationRequestHandlerPath": "StoreHoursSample/Operations/StoreHours/StoreHoursOperationRequestHandler"
         }
       ]
     }

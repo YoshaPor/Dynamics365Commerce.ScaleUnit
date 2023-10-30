@@ -1,0 +1,103 @@
+
+  /* tslint:disable */
+  import { ProxyEntities } from "PosApi/Entities";
+  // @ts-ignore
+  import { DateExtensions } from "PosApi/TypeExtensions";
+  export { ProxyEntities };
+
+  export namespace Entities {
+  
+  /**
+   * StoreDayHours entity class.
+   */
+  export class StoreDayHours {
+      public DayOfWeek: number;
+      public OpenTime: number;
+      public CloseTime: number;
+      public Id: number;
+      public ExtensionProperties: ProxyEntities.CommerceProperty[];
+      
+      // Navigation properties names
+      
+      /**
+       * Construct an object from odata response.
+       * @param {any} odataObject The odata result object.
+       */
+      constructor(odataObject?: any) {
+      odataObject = odataObject || {};
+            this.DayOfWeek = odataObject.DayOfWeek;
+              
+            this.OpenTime = odataObject.OpenTime;
+              
+            this.CloseTime = odataObject.CloseTime;
+              
+            this.Id = (odataObject.Id != null) ? parseInt(odataObject.Id, 10) : undefined;
+              
+        this.ExtensionProperties = undefined;
+        if (odataObject.ExtensionProperties) {
+        this.ExtensionProperties = [];
+        for (var i = 0; i < odataObject.ExtensionProperties.length; i++) {
+        if (odataObject.ExtensionProperties[i] != null) {
+        if (odataObject.ExtensionProperties[i]['@odata.type'] != null) {
+        var className: string = odataObject.ExtensionProperties[i]['@odata.type'];
+        className = className.substr(className.lastIndexOf('.') + 1).concat("Class");
+        // @ts-ignore
+        this.ExtensionProperties[i] = new ProxyEntities[className](odataObject.ExtensionProperties[i])
+        } else {
+        this.ExtensionProperties[i] = new ProxyEntities.CommercePropertyClass(odataObject.ExtensionProperties[i]);
+        }
+                    } else {
+        this.ExtensionProperties[i] = undefined;
+        }
+        }
+        }
+      
+      }
+  }
+
+  /**
+   * ExampleEntity entity class.
+   */
+  export class ExampleEntity {
+      public IntData: number;
+      public StringData: string;
+      public UnusualEntityId: number;
+      public ExtensionProperties: ProxyEntities.CommerceProperty[];
+      
+      // Navigation properties names
+      
+      /**
+       * Construct an object from odata response.
+       * @param {any} odataObject The odata result object.
+       */
+      constructor(odataObject?: any) {
+      odataObject = odataObject || {};
+            this.IntData = odataObject.IntData;
+              
+            this.StringData = odataObject.StringData;
+              
+            this.UnusualEntityId = (odataObject.UnusualEntityId != null) ? parseInt(odataObject.UnusualEntityId, 10) : undefined;
+              
+        this.ExtensionProperties = undefined;
+        if (odataObject.ExtensionProperties) {
+        this.ExtensionProperties = [];
+        for (var i = 0; i < odataObject.ExtensionProperties.length; i++) {
+        if (odataObject.ExtensionProperties[i] != null) {
+        if (odataObject.ExtensionProperties[i]['@odata.type'] != null) {
+        var className: string = odataObject.ExtensionProperties[i]['@odata.type'];
+        className = className.substr(className.lastIndexOf('.') + 1).concat("Class");
+        // @ts-ignore
+        this.ExtensionProperties[i] = new ProxyEntities[className](odataObject.ExtensionProperties[i])
+        } else {
+        this.ExtensionProperties[i] = new ProxyEntities.CommercePropertyClass(odataObject.ExtensionProperties[i]);
+        }
+                    } else {
+        this.ExtensionProperties[i] = undefined;
+        }
+        }
+        }
+      
+      }
+  }
+
+}

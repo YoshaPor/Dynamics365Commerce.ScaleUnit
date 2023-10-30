@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <BuildNumber Condition="'$(BuildNumber)' == ''">0.0</BuildNumber>
+    <BuildNumber Condition="'$(BuildNumber)' == ''">1.0</BuildNumber>
     <MajorVersion>9.44</MajorVersion>
     <Version>$(MajorVersion).$(BuildNumber)</Version>
   </PropertyGroup>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\CustomizationPackage.props" />
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="C:\Users\Admin4e8f191a22\.nuget\packages\microsoft.dynamics.commerce.sdk.installers.storecommerce\9.44.23268.2\contentFiles\cs\netstandard2.0\Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\Admin4e8f191a22\.nuget\packages\microsoft.dynamics.commerce.sdk.installers.scaleunit\9.44.23268.2\contentFiles\cs\netstandard2.0\Program.cs" Link="Program.cs">
+      <Private>False</Private>
+      <NuGetPackageVersion>9.44.23268.2</NuGetPackageVersion>
+      <NuGetItemType>Compile</NuGetItemType>
+      <NuGetPackageId>Microsoft.Dynamics.Commerce.Sdk.Installers.ScaleUnit</NuGetPackageId>
+      <Pack>false</Pack>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Dynamics.Commerce.Sdk.Installers.StoreCommerce" Version="9.44.23268.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChannelDatabase\ChannelDatabase.csproj" />
+    <ProjectReference Include="..\CommerceRuntime\CommerceRuntime.csproj" />
+    <ProjectReference Include="..\POS\POS.csproj" />
+  </ItemGroup>
+
+</Project>
